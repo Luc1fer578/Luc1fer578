@@ -102,7 +102,7 @@ function drawSnake() {
 	collisionBorder();
 
 	// добавляем в массив объект с координатами
-	snake.tails.unshift( { x: snake.x, y: snake.y } );
+	snake.tails.unshift ( { x: snake.x, y: snake.y } );
 	
 	/* если кол-во дочерних элементов у змейки больше чем разрешено то мы 
 	удаляем последний элемент*/
@@ -150,7 +150,7 @@ function drawBerry() {
 
 function randomPositionBerry() {
 	berry.x = getRandomInt(0, canvas.width / config.sizeCell ) * config.sizeCell;
-	berry.y = getRandomInt(0, canvas.heigth / config.sizeCell ) * config.sizeCell;
+	berry.y = getRandomInt(0, canvas.height / config.sizeCell ) * config.sizeCell;
 }
 
 function collisionBorder() {
@@ -173,16 +173,13 @@ function refreshGame() {
 
 	snake.x = 160;
 	snake.y = 160;
-	snake.tails = {};
+	snake.tails = [];
 	snake.maxTails = 3;
 	snake.dx = config.sizeCell;
 	snake.dy = 0;
 
 	randomPositionBerry();
 };
-
-
-
 
 document.addEventListener('keydown', function(e) {
 	if(e.code == 'KeyW') {
