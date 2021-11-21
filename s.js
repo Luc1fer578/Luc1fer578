@@ -11,7 +11,7 @@ const config = {
 
 	/* step, maxstep чтобы пропускать игровой цикл */
 	step: 0, // шаг
-	maxStep: 5, // максимальная скорость
+	maxStep: 6, // максимальная скорость
 
 	/* sizeCEll размер одной ячейки, а sizeBerry ягода которую будет кушать змейка */
 	sizeCell: 16, // размер ячейки
@@ -56,7 +56,7 @@ scoreBlock = document.querySelector(".game-score .score-count");
 
 /* вставляем пустую функцию для рандомных значений у ягоды */
 drawScore();
-
+randomPositionBerry()
 /* =============================================================================== */
 
 /* в игровой цикл подаем бесконечную функцию отрисовки */
@@ -115,9 +115,9 @@ function drawSnake() {
 	snake.tails.forEach( function(el, index){
 		
 		if (index == 0) {
-			context.fillStyle = "#FA0556"; /* красим красный */
+			context.fillStyle = "#68c4ba"; /* красим красный */
 		} else {
-			context.fillStyle = "#A00034"; /* остальное тело в тусклый */
+			context.fillStyle = "#00ffe1"; /* остальное тело в тусклый */
 		}
 		context.fillRect( el.x, el.y, config.sizeCell, config.sizeCell );
 
@@ -126,6 +126,15 @@ function drawSnake() {
 			snake.maxTails++; /* увеличиваем хваост на 1 */
 			incScore(); /* увеличиваем очки */
 			randomPositionBerry(); /* создаем новую ягоду */
+				// if(score === 10) {
+				// 	config.maxStep = 5;
+				// } else if (score === 20) {
+				// 	config.maxStep = 4;
+				// } else if (score === 30) {
+				// 	config.maxStep = 3;
+				// } else if (score = 50) {
+				// 	config.maxStep = 2;
+				// }
 		}
 		/* нужно проверить змейку с хвостом ЕСЛИ совпало то заного запускаем игру */
 		for( let i = index + 1; i < snake.tails.length; i++ ) {
@@ -142,7 +151,7 @@ function drawSnake() {
 function drawBerry() {
 	
 	context.beginPath(); // начало рисования
-	context.fillStyle = "#A00034"; // задаем цвет ягоды
+	context.fillStyle = "#a7d9d3"; // задаем цвет ягоды
 	/* рисуем окружность на основе координат от ягоды */
 	context.arc( berry.x + (config.sizeCell / 2 ), berry.y + (config.sizeCell / 2 ), config.sizeBerry, 0, 2 * Math.PI );
 	context.fill();
